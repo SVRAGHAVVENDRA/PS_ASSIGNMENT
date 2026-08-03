@@ -7,7 +7,7 @@
 
 ## 1. 5 Whys Analysis
 
-| Why # | Your Answer |
+| Why # | Answer |
 |---|---|
 | **Why 1** | Why do 200+ customer fund transfers show 'PENDING' for more than 48 hours and fail to complete? <br> *Answer*: Because the background transfer system does not receive a status update from the receiving bank's network API. |
 | **Why 2** | Why does the background transfer system fail to receive a status update from the receiving bank's API? <br> *Answer*: Because the network connection times out during peak transaction hours when connecting to partner banks. |
@@ -22,7 +22,7 @@ The root cause of pending fund transfers is that the payment integration lacks a
 
 ---
 
-## 3. "How Might We..." Problem Statement
+## 3. "How Might We" Problem Statement
 How might we handle payment network timeouts automatically so that Meridian Bank customers receive immediate, accurate status updates on their fund transfers?
 
 ---
