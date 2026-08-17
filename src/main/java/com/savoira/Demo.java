@@ -1,61 +1,72 @@
 package com.savoira;
 
 /**
- * Demo runner class for verifying the BankAccount implementation.
+ * Updated Demo runner class for verifying BankAccount limits, static tracking,
+ * and clean LoanUtils calculations on the w4-static-clean branch.
  */
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("=== MERIDIAN RETAIL BANK — BANK ACCOUNT DEMO ===");
+        System.out.println("=== MERIDIAN RETAIL BANK — ADVANCED DEMO (w4-static-clean) ===");
 
-        // 1. Create two bank accounts
-        // Account 1: using the primary constructor
-        System.out.println("\n--- Creating Account 1 ---");
-        BankAccount acc1 = new BankAccount("1001", "Alice Smith", 5000.0);
-        System.out.println("Created Account 1: " + acc1);
+        // 1. Demonstrate static account tracking
+        System.out.println("\nInitial total accounts created: " + BankAccount.getTotalAccountsCreated());
 
-        // Account 2: using the overloaded constructor (defaults to 0.0 balance)
-        System.out.println("\n--- Creating Account 2 ---");
-        BankAccount acc2 = new BankAccount("1002", "Bob Jones");
-        System.out.println("Created Account 2: " + acc2);
+        System.out.println("Creating multiple accounts...");
+        var acc1 = new BankAccount("2001", "Emma Watson", 100_000.0);
+        var acc2 = new BankAccount("2002", "Daniel Radcliffe", 50_000.0);
+        var acc3 = new BankAccount("2003", "Rupert Grint");
 
-        // 2. Perform deposits and withdrawals
-        System.out.println("\n--- Performing Valid Transactions ---");
-        
-        System.out.println("Depositing Rs. 1500.0 into Account 1...");
-        acc1.deposit(1500.0);
-        System.out.println("Withdrawing Rs. 2000.0 from Account 1...");
-        acc1.withdraw(2000.0);
-        System.out.println("Account 1 State: " + acc1);
+        System.out.println("Total accounts created now: " + BankAccount.getTotalAccountsCreated());
 
-        System.out.println("\nDepositing Rs. 3500.0 into Account 2...");
-        acc2.deposit(3500.0);
-        System.out.println("Withdrawing Rs. 1200.0 from Account 2...");
-        acc2.withdraw(1200.0);
-        System.out.println("Account 2 State: " + acc2);
+        // 2. Demonstrate BankConfig Limits
+        System.out.println("\n--- Testing BankConfig Limits ---");
+        System.out.println("Max Deposit Allowed: Rs. " + BankConfig.MAX_DEPOSIT);
+        System.out.println("Max Withdrawal Allowed: Rs. " + BankConfig.MAX_WITHDRAWAL);
+        System.out.println("Max Daily Transactions: " + BankConfig.MAX_DAILY_TXN);
 
-        // 3. Attempt one invalid operation per account
-        System.out.println("\n--- Attempting Invalid Transactions (Error Handling) ---");
-
-        // Invalid operation 1: Overdraft on Account 1
+        // A. Test Exceeding Max Deposit Limit
         try {
-            System.out.println("Attempting to withdraw Rs. 10000.0 from Account 1 (exceeds balance of Rs. " + acc1.getBalance() + ")...");
-            acc1.withdraw(10000.0);
+            System.out.println("\nAttempting to deposit Rs. 600,000 into Account 1...");
+            acc1.deposit(600_000.0);
         } catch (IllegalArgumentException e) {
             System.out.println("Caught Expected Error: " + e.getMessage());
         }
 
-        // Invalid operation 2: Negative deposit on Account 2
+        // B. Test Exceeding Max Withdrawal Limit
         try {
-            System.out.println("Attempting to deposit Rs. -500.0 into Account 2...");
-            acc2.deposit(-500.0);
+            System.out.println("\nAttempting to withdraw Rs. 250,000 from Account 1...");
+            acc1.withdraw(250_000.0);
         } catch (IllegalArgumentException e) {
             System.out.println("Caught Expected Error: " + e.getMessage());
         }
 
-        // 4. Print final status
-        System.out.println("\n--- Final Account Summary ---");
-        System.out.println("Account 1: " + acc1);
-        System.out.println("Account 2: " + acc2);
-        System.out.println("\n================================================");
+        // C. Test Exceeding Daily Transaction Limit (MAX_DAILY_TXN = 10)
+        System.out.println("\nPerforming 10 successful rapid small deposits on Account 3...");
+        for (var i = 1; i <= 10; i++) {
+            acc3.deposit(10.0);
+            System.out.println("Txn #" + i + " complete. Status: " + acc3);
+        }
+
+        try {
+            System.out.println("\nAttempting the 11th transaction (exceeding daily limit of 10) on Account 3...");
+            acc3.deposit(10.0);
+        } catch (IllegalStateException e) {
+            System.out.println("Caught Expected Error: " + e.getMessage());
+        }
+
+        // 3. Demonstrate LoanUtils Monthly Compound Interest
+        System.out.println("\n--- Testing Clean LoanUtils Compound Interest ---");
+        var principal = 10_000.0;
+        var annualRate = 6.0; // 6% annual rate
+        var months = 12; // 1 year
+
+        var finalAmount = LoanUtils.calculateMonthlyCompoundInterest(principal, annualRate, months);
+        System.out.printf("Principal: Rs. %.2f%n", principal);
+        System.out.printf("Annual Interest Rate: %.2f%%%n", annualRate);
+        System.out.printf("Compounding Period: %d months%n", months);
+        System.out.printf("Accumulated Future Value: Rs. %.2f%n", finalAmount);
+        System.out.printf("Interest Earned: Rs. %.2f%n", (finalAmount - principal));
+
+        System.out.println("\n============================================================");
     }
 }
