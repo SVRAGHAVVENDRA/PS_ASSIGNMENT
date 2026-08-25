@@ -4,7 +4,7 @@ package com.savoira.w5;
  * Class representing a Personal Loan.
  * Part of Week 5 Assignment 1.
  */
-public class PersonalLoan extends Loan {
+public class PersonalLoan extends Loan implements Exportable {
     private int tenureMonths;
 
     /**
@@ -41,6 +41,16 @@ public class PersonalLoan extends Loan {
         System.out.println("Tenure         : " + tenureMonths + " months");
         System.out.printf("Monthly EMI    : Rs.%.2f\n", calculateEMI());
         System.out.println("----------------------------------------");
+    }
+
+    /**
+     * Implementation of Exportable interface.
+     * Returns a CSV representation of all PersonalLoan fields: loanId,applicantName,principal,annualRate,tenureMonths,emi
+     */
+    @Override
+    public String toCSVRow() {
+        return String.format("%s,%s,%.2f,%.2f,%d,%.2f",
+                loanId, applicantName, principal, annualRate, tenureMonths, calculateEMI());
     }
 
     // Getter for tenure

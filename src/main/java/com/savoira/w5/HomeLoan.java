@@ -4,7 +4,7 @@ package com.savoira.w5;
  * Class representing a Home Loan.
  * Part of Week 5 Assignment 1.
  */
-public class HomeLoan extends Loan {
+public class HomeLoan extends Loan implements Auditable {
     private int tenureMonths;
 
     /**
@@ -45,6 +45,15 @@ public class HomeLoan extends Loan {
         System.out.println("Tenure         : " + tenureMonths + " months");
         System.out.printf("Monthly EMI    : Rs.%.2f\n", calculateEMI());
         System.out.println("----------------------------------------");
+    }
+
+    /**
+     * Prints the audit summary of the home loan.
+     */
+    @Override
+    public void auditSummary() {
+        System.out.printf("%s%s | %s | Rs.%.2f | Rate:%.2f%%\n",
+                auditPrefix(), loanId, applicantName, principal, annualRate);
     }
 
     // Getter for tenure

@@ -60,4 +60,21 @@ public abstract class Loan {
     public double getAnnualRate() {
         return annualRate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof Loan)) return false;
+        Loan other = (Loan) o;
+        if (this.loanId == null || other.loanId == null) {
+            return this.loanId == other.loanId;
+        }
+        return this.loanId.equalsIgnoreCase(other.loanId);
+    }
+
+    @Override
+    public int hashCode() {
+        return loanId != null ? loanId.toLowerCase().hashCode() : 0;
+    }
 }
+
