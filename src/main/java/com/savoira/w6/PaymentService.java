@@ -15,6 +15,13 @@ public class PaymentService {
         return balance;
     }
 
+    private static String formatMoney(double val) {
+        if (val == (long) val) {
+            return String.valueOf((long) val);
+        }
+        return String.format("%.2f", val);
+    }
+
     /**
      * Processes a payment of the specified amount against current balance.
      *
@@ -25,90 +32,68 @@ public class PaymentService {
      */
     public void processPayment(double amount) {
         if (amount <= 0) {
-            throw new InvalidAmountException("Invalid payment amount: Rs." + amount + ". Payment amount must be strictly positive.");
+            throw new InvalidAmountException("Invalid payment amount: Rs." + formatMoney(amount) + ". Payment amount must be positive.");
         }
 
         if (amount > DAILY_LIMIT) {
-            throw new DailyLimitExceededException("Daily transaction limit of Rs." + DAILY_LIMIT + " exceeded. Attempted amount: Rs." + amount, amount);
+            throw new DailyLimitExceededException("Daily transaction limit of Rs.200000 exceeded. Attempted amount: Rs." + formatMoney(amount), amount);
         }
 
         if (amount > balance) {
             double shortfall = amount - balance;
-            throw new InsufficientFundsException("Insufficient funds. Available: Rs." + balance + ", Requested: Rs." + amount + ", Shortfall: Rs." + shortfall, shortfall);
+            throw new InsufficientFundsException("Insufficient funds. Available balance: Rs." + formatMoney(balance) + ", Requested: Rs." + formatMoney(amount) + ", Shortfall: Rs." + formatMoney(shortfall), shortfall);
         }
 
         balance -= amount;
-        System.out.println("Payment of Rs." + amount + " processed. New balance: Rs." + balance);
+        System.out.println("Payment of Rs." + formatMoney(amount) + " processed. New balance: Rs." + formatMoney(balance));
     }
 
     public static void main(String[] args) {
-        System.out.println("=== Meridian Bank: Payment Service Exception Handling Demo ===");
         PaymentService service = new PaymentService(50000.0);
-        System.out.println("Initial Account Balance: Rs." + service.getBalance());
-        System.out.println("---------------------------------------------------------------");
 
-        // Call 1: processPayment(15000) - should succeed
-        System.out.println("\n[Attempt 1] Processing Rs.15000 payment:");
+        // 1. processPayment(15000) - should succeed
         try {
             service.processPayment(15000);
         } catch (PaymentException e) {
-            System.err.println("Failed: " + e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         } finally {
             System.out.println("Attempt complete.");
         }
 
-        // Call 2: processPayment(-500) - should throw InvalidAmountException
-        System.out.println("\n[Attempt 2] Processing Rs.-500 payment:");
+        // 2. processPayment(-500) - should throw InvalidAmountException
         try {
             service.processPayment(-500);
-        } catch (InvalidAmountException e) {
-            System.out.println("Caught InvalidAmountException: " + e.getMessage());
         } catch (PaymentException e) {
-            System.err.println("Caught unexpected PaymentException: " + e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         } finally {
             System.out.println("Attempt complete.");
         }
 
-        // Call 3: processPayment(250000) - should throw DailyLimitExceededException
-        System.out.println("\n[Attempt 3] Processing Rs.250000 payment:");
+        // 3. processPayment(250000) - should throw DailyLimitExceededException
         try {
             service.processPayment(250000);
-        } catch (DailyLimitExceededException e) {
-            System.out.println("Caught DailyLimitExceededException: " + e.getMessage());
-            System.out.println("-> Attempted amount retrieved from exception: Rs." + e.getAttemptedAmount());
         } catch (PaymentException e) {
-            System.err.println("Caught unexpected PaymentException: " + e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         } finally {
             System.out.println("Attempt complete.");
         }
 
-        // Call 4: processPayment(40000) - balance is Rs.35000, so Rs.40000 exceeds available balance (shortfall Rs.5000)
-        System.out.println("\n[Attempt 4] Processing Rs.40000 payment:");
+        // 4. processPayment(40000) - throws InsufficientFundsException (balance is 35000, shortfall is 5000)
         try {
             service.processPayment(40000);
-        } catch (InsufficientFundsException e) {
-            System.out.println("Caught InsufficientFundsException: " + e.getMessage());
-            System.out.println("-> Shortfall retrieved from exception: Rs." + e.getShortfall());
         } catch (PaymentException e) {
-            System.err.println("Caught unexpected PaymentException: " + e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         } finally {
             System.out.println("Attempt complete.");
         }
 
-        // Call 5: processPayment(10000) - balance is still Rs.35000, so Rs.10000 succeeds
-        System.out.println("\n[Attempt 5] Processing Rs.10000 payment:");
+        // 5. processPayment(10000) - should succeed (balance remains 35000, new balance becomes 25000)
         try {
             service.processPayment(10000);
-        } catch (InsufficientFundsException e) {
-            System.out.println("Caught InsufficientFundsException: " + e.getMessage());
-            System.out.println("-> Shortfall retrieved from exception: Rs." + e.getShortfall());
         } catch (PaymentException e) {
-            System.err.println("Caught unexpected PaymentException: " + e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         } finally {
             System.out.println("Attempt complete.");
         }
-
-        System.out.println("\n---------------------------------------------------------------");
-        System.out.println("Final Account Balance: Rs." + service.getBalance());
     }
 }
