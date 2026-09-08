@@ -1,0 +1,10 @@
+Payment of Rs.15000 processed. New balance: Rs.35000
+Attempt complete.
+Exception: Invalid payment amount: Rs.-500. Payment amount must be positive.
+Attempt complete.
+Exception: Daily transaction limit of Rs.200000 exceeded. Attempted amount: Rs.250000
+Attempt complete.
+Exception: Insufficient funds. Available balance: Rs.35000, Requested: Rs.40000, Shortfall: Rs.5000
+Attempt complete.
+Payment of Rs.10000 processed. New balance: Rs.25000
+Attempt complete.
