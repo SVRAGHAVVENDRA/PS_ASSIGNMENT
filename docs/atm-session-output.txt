@@ -1,5 +1,0 @@
-Welcome to Meridian Retail Bank ATM.
-Current balance: Rs.3000
-Enter withdrawal amount (attempt 1 of 3): Exception: Minimum withdrawal amount is Rs.500. Requested: Rs.300
-Enter withdrawal amount (attempt 2 of 3): Exception: Withdrawal amount must be a multiple of Rs.500. Requested: Rs.800
-Enter withdrawal amount (attempt 3 of 3): Withdrawal successful. New balance: Rs.2000
