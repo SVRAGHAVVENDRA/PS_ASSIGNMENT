@@ -79,7 +79,6 @@ BEGIN ATM_WITHDRAWAL_SESSION
     // Security lockout after exceeding maximum allowed attempts
     IF attempts >= MAX_ATTEMPTS THEN
         DISPLAY "Card locked."
-        TRIGGER_SECURITY_LOCKOUT(card_id)
     END IF
 
 END ATM_WITHDRAWAL_SESSION
