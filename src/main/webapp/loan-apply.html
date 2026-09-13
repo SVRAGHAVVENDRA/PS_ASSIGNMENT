@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Retail Bank - Loan Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Meridian Retail Bank</h1>
+        <p class="portal-tagline">Loan Application & Eligibility Verification</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html#dashboard">Dashboard</a></li>
+            <li><a href="index.html#accounts">Accounts</a></li>
+            <li><a href="index.html#transfers">Transfers</a></li>
+            <li><a href="loan-apply.html">Loans</a></li>
+            <li><a href="index.html#settings">Settings</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-page-container">
+        <main class="loan-form-wrapper">
+            <section class="form-card">
+                <h2>Retail Loan Application Form</h2>
+                <p class="form-description">
+                    Apply for competitive personal, home, or education financing. Please ensure all details match your official KYC documentation.
+                </p>
+
+                <!-- HTML5 Native Constraint Validation Form -->
+                <form action="#" method="post">
+                    <p class="form-group">
+                        <label for="fullName">Full Name <span class="required-indicator">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required minlength="3" placeholder="Enter your full legal name">
+                    </p>
+
+                    <p class="form-group">
+                        <label for="email">Email Address <span class="required-indicator">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    </p>
+
+                    <p class="form-group">
+                        <label for="phone">Mobile Phone Number <span class="required-indicator">*</span></label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="10-digit mobile number" required placeholder="10-digit mobile number (e.g. 9876543210)">
+                    </p>
+
+                    <p class="form-group">
+                        <label for="loanType">Loan Type <span class="required-indicator">*</span></label>
+                        <select id="loanType" name="loanType" required>
+                            <option value="" disabled selected>-- Select Loan Category --</option>
+                            <option value="Home Loan">Home Loan</option>
+                            <option value="Personal Loan">Personal Loan</option>
+                            <option value="Education Loan">Education Loan</option>
+                        </select>
+                    </p>
+
+                    <p class="form-group">
+                        <label for="loanAmount">Requested Loan Amount (₹) <span class="required-indicator">*</span></label>
+                        <input type="number" id="loanAmount" name="loanAmount" min="50000" max="5000000" step="1000" required placeholder="₹50,000 to ₹50,00,000 (Multiples of 1,000)">
+                    </p>
+
+                    <p class="form-group">
+                        <label for="annualIncome">Annual Income (₹) <span class="required-indicator">*</span></label>
+                        <input type="number" id="annualIncome" name="annualIncome" min="100000" required placeholder="Minimum ₹1,00,000">
+                    </p>
+
+                    <p class="form-group checkbox-group">
+                        <label class="checkbox-label" for="declaration">
+                            <input type="checkbox" id="declaration" name="declaration" required>
+                            I confirm the information provided is accurate
+                        </label>
+                    </p>
+
+                    <p class="form-actions">
+                        <button type="submit" class="btn-primary">Submit Application</button>
+                    </p>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Meridian Retail Bank | Savoira Learning Platform</p>
+        <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>
