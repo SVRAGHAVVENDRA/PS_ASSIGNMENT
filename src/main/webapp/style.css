@@ -1,0 +1,263 @@
+/* 
+   Meridian Retail Bank - Dashboard Stylesheet
+   Theme: Savoira Navy (#1F3864), Accent Teal (#0F7C7C), Neutral Zebra (#EAF1FB)
+*/
+
+/* ----------------------------- CSS Reset & Base ----------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #F4F7FB;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* ----------------------------- Header ----------------------------- */
+header {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    padding: 24px 32px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ----------------------------- Navigation ----------------------------- */
+nav {
+    background-color: #1F3864;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li a {
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 14px 16px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+nav li a:hover {
+    background-color: #0F7C7C;
+}
+
+/* ----------------------------- Layout Container ----------------------------- */
+.layout-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 0 20px;
+}
+
+main {
+    flex: 0 0 70%;
+    max-width: 70%;
+}
+
+aside {
+    flex: 0 0 calc(30% - 24px);
+    max-width: calc(30% - 24px);
+}
+
+/* ----------------------------- Content Sections ----------------------------- */
+section, aside {
+    background: #FFFFFF;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+section h2, aside h2 {
+    color: #1F3864;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #EAF1FB;
+    padding-bottom: 8px;
+}
+
+/* ----------------------------- Account Summary Table ----------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    background-color: #FFFFFF;
+}
+
+thead {
+    background-color: #1F3864;
+    color: #FFFFFF;
+}
+
+th {
+    padding: 12px;
+    font-weight: 700;
+    text-align: left;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #E5E9F2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #EAF1FB;
+}
+
+td.frozen {
+    color: #C0504D;
+    font-weight: 700;
+}
+
+/* ----------------------------- Recent Transactions ----------------------------- */
+ol {
+    padding-left: 20px;
+}
+
+ol li {
+    margin-bottom: 10px;
+    color: #4A5568;
+    font-size: 14px;
+}
+
+/* ----------------------------- Quick Transfer Form ----------------------------- */
+aside form p {
+    margin-bottom: 16px;
+}
+
+aside label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1F3864;
+}
+
+aside input[type="text"],
+aside input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #C0C0C0;
+    font-size: 14px;
+    color: #2D3748;
+}
+
+aside input[type="text"]:focus,
+aside input[type="number"]:focus {
+    outline: 2px solid #0F7C7C;
+    border-color: transparent;
+}
+
+aside button[type="submit"] {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+aside button[type="submit"]:hover {
+    background-color: #12254F;
+}
+
+/* ----------------------------- Footer ----------------------------- */
+footer {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #EAF1FB;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet Viewport (<= 900px): Maintain side-by-side layout at 70% / 30% */
+@media (max-width: 900px) {
+    .layout-container {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        padding: 0 14px;
+    }
+
+    main {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+
+    aside {
+        flex: 0 0 calc(30% - 16px);
+        max-width: calc(30% - 16px);
+    }
+}
+
+/* Mobile Viewport (<= 600px): Stack layout vertically & reduce typography */
+@media (max-width: 600px) {
+    .layout-container {
+        flex-direction: column;
+        margin: 16px auto;
+        padding: 0 12px;
+    }
+
+    main, aside {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li a {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 6px;
+    }
+}
