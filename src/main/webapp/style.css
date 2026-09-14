@@ -1,0 +1,416 @@
+/* 
+   Meridian Retail Bank - Stylesheet
+   Theme: Savoira Navy (#1F3864), Accent Teal (#0F7C7C), Neutral Zebra (#EAF1FB)
+*/
+
+/* ----------------------------- CSS Reset & Base ----------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #F4F7FB;
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* ----------------------------- Header ----------------------------- */
+header {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    padding: 24px 32px;
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.portal-tagline {
+    font-size: 13px;
+    color: #D2E0F5;
+    margin-top: 4px;
+}
+
+/* ----------------------------- Task D1.1: Navigation ----------------------------- */
+nav {
+    background-color: #1F3864;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li a {
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 14px 18px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+nav li a:hover {
+    background-color: #0F7C7C;
+}
+
+/* ----------------------------- Layout Container ----------------------------- */
+.layout-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    max-width: 1240px;
+    margin: 28px auto;
+    padding: 0 20px;
+}
+
+main {
+    flex: 0 0 70%;
+    max-width: 70%;
+}
+
+aside {
+    flex: 0 0 calc(30% - 24px);
+    max-width: calc(30% - 24px);
+}
+
+/* ----------------------------- Content Sections ----------------------------- */
+section, aside {
+    background: #FFFFFF;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
+}
+
+section h2, aside h2 {
+    color: #1F3864;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #EAF1FB;
+    padding-bottom: 8px;
+}
+
+/* ----------------------------- Task D1.2: Account Cards Grid ----------------------------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.account-card {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    border: 1px solid #E5E9F2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.account-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-savings {
+    border-left: 5px solid #0F7C7C; /* Teal Accent */
+}
+
+.card-current {
+    border-left: 5px solid #1F3864; /* Navy Accent */
+}
+
+.card-fd {
+    border-left: 5px solid #D97706; /* Amber Accent */
+}
+
+.account-card h3 {
+    font-size: 16px;
+    color: #1F3864;
+    margin-bottom: 6px;
+}
+
+.account-number {
+    font-size: 12px;
+    color: #64748B;
+    font-family: monospace;
+    margin-bottom: 8px;
+}
+
+.card-balance {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 12px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.badge-active {
+    background-color: #DCFCE7;
+    color: #15803D;
+}
+
+.badge-frozen {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+/* ----------------------------- Task D1.3: Table Zebra-Striping ----------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    background-color: #FFFFFF;
+}
+
+thead {
+    background-color: #1F3864;
+    color: #FFFFFF;
+}
+
+th {
+    padding: 12px 14px;
+    font-weight: 700;
+    text-align: left;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #E5E9F2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #EAF1FB;
+}
+
+/* ----------------------------- Recent Transactions ----------------------------- */
+ol {
+    padding-left: 20px;
+}
+
+ol li {
+    margin-bottom: 10px;
+    color: #475569;
+    font-size: 14px;
+}
+
+/* ----------------------------- Task D1.4: Quick Transfer Form ----------------------------- */
+aside form p {
+    margin-bottom: 16px;
+}
+
+aside label,
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1F3864;
+}
+
+aside input[type="text"],
+aside input[type="number"],
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #C0C0C0;
+    font-size: 14px;
+    color: #1E293B;
+    background-color: #FFFFFF;
+}
+
+aside input[type="text"]:focus,
+aside input[type="number"]:focus,
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid #0F7C7C;
+    border-color: transparent;
+}
+
+aside button[type="submit"],
+.btn-primary {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+aside button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: #12254F;
+}
+
+/* ----------------------------- Loan Application Form Page ----------------------------- */
+.form-page-container {
+    max-width: 760px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+.form-card {
+    background: #FFFFFF;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-description {
+    font-size: 14px;
+    color: #64748B;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.required-indicator {
+    color: #DC2626;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #334155;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+/* ----------------------------- Footer ----------------------------- */
+footer {
+    background-color: #1F3864;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 48px;
+    font-size: 13px;
+}
+
+footer p {
+    margin-bottom: 6px;
+}
+
+footer a {
+    color: #D2E0F5;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Task D2: Multi-Breakpoint Responsive Layout
+   ========================================================================== */
+
+/* Task D2.1: Screens > 900px are handled by default (70% main / 30% aside, 3-col grid) */
+
+/* Task D2.2: Screens between 600px and 900px: Grid drops to 2 columns */
+@media (max-width: 900px) {
+    .layout-container {
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    main {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+
+    aside {
+        flex: 0 0 calc(30% - 16px);
+        max-width: calc(30% - 16px);
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Task D2.3: Screens below 600px: Stack layout, 1-col grid, vertical nav */
+@media (max-width: 600px) {
+    .layout-container {
+        flex-direction: column;
+        margin: 16px auto;
+        padding: 0 12px;
+    }
+
+    main, aside {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li a {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 6px;
+    }
+
+    .form-card {
+        padding: 20px 16px;
+    }
+}
