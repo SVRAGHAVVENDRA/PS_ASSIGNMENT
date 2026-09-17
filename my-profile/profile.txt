@@ -1,3 +1,4 @@
-email: cs22b045@iittp.ac.com
+College: IIT Tirupati
+email: cs22b045@iittp.ac.in
 name: SVRAGHAVVENDRA
 Location: India
