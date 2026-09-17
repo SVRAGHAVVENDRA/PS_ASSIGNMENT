@@ -1,0 +1,23 @@
+# Maven target output
+target/
+*.jar
+*.war
+*.ear
+
+# IDE specific files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Log outputs
+logs/
+
+# Compiled Java class files
+*.class

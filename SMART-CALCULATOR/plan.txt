@@ -1,0 +1,6 @@
+People: Students, Banks, Shop keepers, venders
+Process: Making a calculator or using one? (Error handling, history management)
+Technology: Arthematic , advance trigonometry, logs, metrics
+Data: Input values,(correct or incorrect) , expected vs actual output, missing or unsupported or out of range.
+Environment: battery, solar battery, screen visiblility based on lighting.
+Measurement: Performance (time taken to deliver the output , accuracy, precision)
